@@ -1,15 +1,15 @@
+/*File: Shape.java
+* Creator: Arturo Ramirez
+* Course: CMSC 335
+* Date: March 25, 2024
+* Purpose: The lead parent for the hierarchy to work.  
+*/
 package projectone;
 
-public class Shape {
+public abstract class Shape {
 
-	// Attributes
+	// Unused attributes
 	public String name;
-	public String color;
-	public String size;
-	
-	//Has-A relation method
-	NumberOfDeminsions demi = new NumberOfDeminsions();
-	
-	
-	
+	public int numberOfDimensions ;
+		
 }
