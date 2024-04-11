@@ -5,7 +5,16 @@
 * Purpose: Create a cone class to calculate the
 * volume of a cone give the radius and height.  
 */
-package projectone;
+package project2;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class Cone extends ThreeDimensionalShape {
 
@@ -15,9 +24,7 @@ public class Cone extends ThreeDimensionalShape {
 	final double pi = Math.PI;
 	
 	//Constructor to initialize radius and height attributes
-	public Cone(int radius, int height) {
-		this.radius = radius;
-		this.height = height;
+	public Cone() {
 	}
 
 	@Override 
@@ -25,4 +32,49 @@ public class Cone extends ThreeDimensionalShape {
 		//Calculate the volume is PI * Radius^2 * (height / 3)
 		return pi * Math.pow(radius, 2)*(height / 3.0);
 	}
+	
+	  @Override
+	    public String[] getSpecifications() {
+	        return new String[]{"Radius", "Height"};
+	    }
+
+	    /**
+	     * Returns a JPanel containing a drawn shape based on the data passed to the object.
+	     *
+	     * @return returns a JPanel containing the shape
+	     */
+	    @Override
+	    public JPanel getShapePanel() throws IOException {
+
+	        final BufferedImage image = ImageIO.read(getClass().getResource("/image/cone.jpg"));
+	        Image reScaledImage = image.getScaledInstance(300, 300, Image.SCALE_DEFAULT);
+
+	        return new JPanel() {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                super.paintComponent(g);
+	                g.drawString(String.format("Base radius: %d, Height: %d", radius, height), 0, 15);
+	                //centering with fast maffs
+	                int imageX = (this.getWidth() - reScaledImage.getWidth(null))/2;
+	                int imageY = (this.getHeight() - reScaledImage.getHeight(null))/2;
+	                g.drawImage(reScaledImage, imageX, imageY, null);
+	                int stringY = imageY + reScaledImage.getHeight(null) + 15;
+	                g.drawString(String.format("The Volume of your Cone is : %.2f", calcVolume()), imageX ,stringY);
+	            }
+	        };
+
+	    }
+
+	    /**
+	     * Passes values to the objects in a way that shapes with varying parameter counts can implement.
+	     * @param values an arraylist of integers. First index is the first initialized data member and so on.
+	     */
+	    @Override
+	    public void passValues(ArrayList<Integer> values) {
+	        this.radius = values.get(0);
+	        this.height = values.get(1);
+
+	    }
+
+
 }

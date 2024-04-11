@@ -5,7 +5,7 @@
 * Purpose: Parent to 2D shapes like circle, triangle,
 * square,and rectangle.  
 */
-package projectone;
+package project2;
 
 public abstract class TwoDimensionalShape extends Shape {
 	

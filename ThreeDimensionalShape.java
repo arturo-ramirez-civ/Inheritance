@@ -5,11 +5,11 @@
 * Purpose: Parent to 3D shapes like torus, cylinder,
 * cone, sphere, and cube.  
 */
-package projectone;
+package project2;
 
 public abstract class ThreeDimensionalShape extends Shape {
 
-	//
+	
 	public abstract double calcVolume();
 
 	@Override
